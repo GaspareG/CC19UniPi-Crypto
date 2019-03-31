@@ -1,23 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Section]{Character encoding}
-\part{Message and character encoding}
+\section[Section]{Message encoding}
+\part{Message encoding}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{What is a message?}
-
-A \textcolor{red}{message} is a sequence of symbols used to communicate
-
-\bigskip
-
-A symbol of the message is called \textcolor{red}{character}
-
-\bigskip
-
-The set of all the possibile characters is called \textcolor{red}{alphabet}
-
-\bigskip
-
-The set of all the possible (meaningful) messages is called \textcolor{red}{dictionary}
 
 \end{frame}
 
@@ -51,45 +37,9 @@ The set of all the possible (meaningful) messages is called \textcolor{red}{dict
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Morse code}
-
-\centering
-
-(Audio) character encoding scheme used in (telegraph) telecommunication.
-
-\smallskip
-
-Each character is encoded using a combination of short and long signal.
-
-\medskip
-
-\includegraphics[width=5cm]{img/morse.png}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Braille code}
-
-\centering
-
-(Tactile) character encoding scheme used for visually impaired people.
-
-\smallskip
-
-Each characted is encoded using a $2 \times 3$ rectangle with "raised dots".
-
-\medskip
-
-\includegraphics[width=6cm]{img/braille.png}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Base64}
 
   \centering
-
-  Group message in blocks of $6$ bits.
 
   Advantage: encode all the ASCII chars in printable chars
   
@@ -97,13 +47,13 @@ Each characted is encoded using a $2 \times 3$ rectangle with "raised dots".
   
   \includegraphics[width=8cm]{img/base64.png}
 
-  \smallskip
-
   \includegraphics[width=4cm]{img/base64-2.png}
 
   \smallskip
   
-  Message are padded with \textcolor{red}{=} (e.g. \textit{flag} $\rightarrow$ \textit{ZmxhZwo=})
+  Message are padded with \textbf{=}
+  
+  \textit{flag} $\rightarrow$ \textit{ZmxhZwo=}
   
 \end{frame}
 

@@ -56,23 +56,18 @@ Why $K = 13$ (or $K = 47$)? Because Encrypt = Decrypt
 
 \medskip
 
-Monoalphabetic cipher: $C_{new} = P[C_{old}]$ (Where $P$ is a dictionary permutation)
+\textcolor{red}{Monoalphabetic} cipher: $C_{new} = P[C_{old}]$ (Where $P$ is a dictionary permutation)
+
+(ROT-K is a monoalphabetic cipher where $P$ is a cyclic rotation of the alphabet)
 
 \medskip
 
-Polialphabetic cipher: multiple substitution alphabets (more than one dictionary permutation)
+\textcolor{red}{Polialphabetic} cipher: multiple substitution alphabets (more than one dictionary permutation)
 
 \medskip
 
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Cryptanalysis}
-
-  https://quipqiup.com
-  
-\end{frame}
-
 \begin{frame}{dcode.fr}
 
 \centering
@@ -88,3 +83,32 @@ Polialphabetic cipher: multiple substitution alphabets (more than one dictionary
 Almost all possible classic ciphers (old and new), encoder/decoder, ...
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cryptanalysis}
+
+  https://quipqiup.com
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Attack models}
+
+Classification of cryptographic attacks:
+
+\medskip
+
+\begin{itemize}
+  \item \textcolor{red}{Ciphertext-only} attack: access only to the ciphertext, and has no access to the plaintext
+  \medskip
+  \item \textcolor{red}{Known-plaintext} attack: access to at least a limited number of pairs of plaintext and the corresponding enciphered text
+  \medskip
+  \item \textcolor{red}{Chosen plaintext} attack: able to choose a number of plaintexts to be enciphered and have access to the resulting ciphertext (encrypt oracle)
+  \medskip
+  \item \textcolor{red}{Chosen ciphertext} attack: able to choose arbitrary ciphertext and have access to plaintext decrypted from it (decrypt oracle) 
+  \medskip
+  \item \textcolor{red}{Side-channel} attack: use of other informations to break the cipher (time, sound, power, error, ...).
+\end{itemize}
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
