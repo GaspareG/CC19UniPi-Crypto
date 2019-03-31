@@ -21,18 +21,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Why cryptography?}
 
-\centering
-
-Cryptography (from greek: kryptos "hidden, secret" and graphein, "to write")
-
-\medskip
-
-\includegraphics[width=0.45\textwidth]{img/crypto.jpg}
-
-\medskip
-
-\textit{The science of secure communication}
-
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -50,6 +50,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Padding a message (PKCS\#5 \& PKCS\#7)}
 
+% \centering
+
+How to handle messages of length not multiple of the block size?
+
+\smallskip
+
+Idea: append "some chars" to the message
+
+\bigskip
+
+\textbf{PKCS\#5}:
+
+\textit{The padding string PS shall consist of $8 - (||M|| \mod 8)$ octets all having value $8 - (||M|| \mod 8).$}
+
+\bigskip
+
+\textbf{PKCS\#7}:
+
+\textit{For such algorithms, the method shall be to pad the input at the trailing end with $k - (l \mod k)$ octets all having value $k - (l \mod k)$, where $l$ is the length of the input.}
+
+\bigskip
+
+Why $8 - (||M|| \mod 8)$ and not $(||M|| \mod 8)$?
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,6 +82,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{ECB (Electronic Codebook)}
+
+\centering\includegraphics[width=9cm]{img/ECB.png}
+
+\medskip
+
+\centering
+
+$C_i = f(M_i, Key)$
 
 \end{frame}
 
@@ -70,6 +101,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{CBC (Cipher Block Chaining)}
 
+\centering\includegraphics[width=9cm]{img/CBC.png}
+
+\medskip
+
+\centering
+
+$C_i = f(M_i \oplus IV_{i}, Key)$
+
+\medskip
+
+$IV_0 = $ given in input (randomly generated)
+
+\medskip
+
+$IV_{i+1} = C_i$
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -78,6 +125,6 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Stream ciphers (Salsa \& Cha-Cha)}
+%\begin{frame}{Stream ciphers (Salsa \& Cha-Cha)}
 
-\end{frame}
+%\end{frame}
