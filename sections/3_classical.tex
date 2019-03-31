@@ -51,22 +51,41 @@ Why $K = 13$ (or $K = 47$)? Because Encrypt = Decrypt
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Substitution cipher}
+\begin{frame}{Classical ciphers}
 
+\textbf{Substitution ciphers}
 
-\medskip
+\textcolor{red}{Monoalphabetic} ciphers: $C_{new} = P[C_{old}]$ (Where $P$ is a dictionary permutation)
 
-\textcolor{red}{Monoalphabetic} cipher: $C_{new} = P[C_{old}]$ (Where $P$ is a dictionary permutation)
+\smallskip
 
 (ROT-K is a monoalphabetic cipher where $P$ is a cyclic rotation of the alphabet)
 
-\medskip
+\smallskip
 
-\textcolor{red}{Polialphabetic} cipher: multiple substitution alphabets (more than one dictionary permutation)
+\textcolor{red}{Polialphabetic} ciphers: multiple substitution alphabets (more than one dictionary permutation)
 
-\medskip
+\smallskip
+
+\textbf{Transposition ciphers}
+
+Encryption systems where the positions held by units of plaintext (characters or groups of characters) are shifted according to a regular system.
+
+\smallskip
+
+E.g. We want to encrypt the message \textit{WE ARE DISCOVERED. FLEE AT ONCE} using the \textbf{route cipher}:
+
+Grid: 
+
+\centerline{\texttt{W R I O R F E O E}}
+\centerline{\texttt{E E S V E L A N J}}
+\centerline{\texttt{A D C E D E T C X}}
+
+Cipher text: \textit{EJXCTEDECDAEWRIORFEONALEVSE}
+
 
 \end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{dcode.fr}
 
@@ -86,7 +105,29 @@ Almost all possible classic ciphers (old and new), encoder/decoder, ...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Cryptanalysis}
 
-  https://quipqiup.com
+Often the vulnerability is not in the algorithm but in its application...
+
+\begin{itemize}
+  \item Bad use of the key (too short, reused, bad generated, ...)
+  \item Messages use a poorly distributed dictionary
+  \item We know the message format (e.g.: \textsc{flag\{\ldots\}})
+\end{itemize}
+
+\medskip
+
+In particular we talk about statistical cryptanalysis when we force the cipher not from algorithmic point of view but from statistical one
+
+\medskip
+
+For example in english the character E has a frequency of 12.02\% while Z only 0.07\%
+
+\medskip
+
+Useful tool (for substitution ciphers): \href{https://quipqiup.com}{https://quipqiup.com}
+
+\medskip
+
+\centering\includegraphics[width=5cm]{img/quipqiup.png}
   
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
