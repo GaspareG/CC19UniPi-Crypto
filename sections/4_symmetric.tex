@@ -5,35 +5,164 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Symmetric-key cryptography}
 
+  Symmetric ciphers are those where messages are encrypted and decrypted using the same key, which must be known only and exclusively to the two parties
+  
+  \medskip
+
+  \phantom{padding}$\mathcal{C}(m, k) = c$ (encrypt function)
+    
+  \phantom{padding}$\mathcal{D}(c, k) = m$ (decrypt function)
+  
+  \medskip
+
+  Obviously:
+  
+  \phantom{padding}$\mathcal{D}(\mathcal{C}(m, k), k) = m$ 
+  
+  \phantom{padding}The original message is not altered during the communication
+  
+  \medskip
+  
+  E.g. In the caesar cipher:
+  
+  \phantom{padding}$\mathcal{C}(m, k) = $ right shift of $k$ positions each character
+  
+  \phantom{padding}$\mathcal{D}(c, k) = $ left shift of $k$ positions each character
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Shannon principle}
+
+  How to assess whether a cipher is robust enough? 
+  
+  (Where robustness means its probability of being successfully attacked)
+  
+  \medskip
+
+  Shannon defines two key concepts:
+  
+  \begin{itemize}
+    \item \textcolor{red}{Confusion}: the key must be well distributed in the encrypted message (each bit of the cipher should depend on each bit of the key with probability 50\%).
+    \item \textcolor{red}{Diffusion}: the message must be well distributed in the encrypted message (each bit of the cipher should depend on each bit of the message with probability 50\%).
+  \end{itemize}
+  
+  \medskip
+  
+  In the Caesar cipher we have no kind of diffusion and low confusion (why?)
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{XOR cipher}
 
+  Consider the XOR (exclusive or) operation $\oplus$, the following properties are valid:
+  
+  \begin{itemize}
+    \item $0 \oplus 0 = 1 \oplus 1 = 0$ 
+    \item $0 \oplus 1 = 1 \oplus 0 = 1$ 
+    \item $x \oplus y \oplus y = x$ 
+  \end{itemize}
+  
+  \medskip
+  \pause
+  
+  We define the XOR cipher as:
+    
+  $\mathcal{C}(m, k) = m \oplus k$ \phantom{padding} ($m[i] \oplus k[i]$, $0 \leq i < ||m||$)
+  
+  $\mathcal{D}(c, k) = c \oplus k$ \phantom{padding} ($c[i] \oplus k[i]$, $0 \leq i < ||c||$)
+
+  \medskip
+  
+  \pause
+
+  Problem: the key $k$ could be shorter than the message $m$.
+  
+  Solution: reuse the key as $k^{'} = k \cdot k \cdot \ldots \cdot k$ until $||k^{'}||$ $m$.
+
+  \medskip
+  \pause
+  
+  Example:
+  
+  \texttt{m = 01100011 01101001 01100001 01101111} (ciao in ASCII).\\
+  \texttt{k = 01111000 01111000 01111000 01111000} (x in ascii 4 times)\\
+  \texttt{c = 00011011 00010001 00011001 00010111} (non printable, \texttt{GxEZFw==} in b64)
+  
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{One-time pad}
 
+  \pause
+
+  The problem with the XOR cipher is that encrypting repeatedly reusing the same key can leak \textcolor{red}{statistical} informations of the original message  
+  
+  \medskip
+  
+  We call Vernam cipher (or one-time pad) a XOR cipher where the key has the same length of the message. 
+  
+  \smallskip
+  
+  This cipher is called \textcolor{red}{perfect} because we have that:
+  
+  \medskip
+  
+  $P(M = m | C = c) = P(M = m)$
+  
+  \medskip
+  
+  The probability that $M$ is a certain message $m$ knowing that the cipher $C$ is $c$ is equal to the probability that $M$ is a certain message not knowing the cipher (all messages are equiprobable, the encrypted message does not give us any information about the real message).
+  
+  \medskip
+  
+  \pause
+
+  Nice in theory, but:
+  
+  \begin{itemize}
+    \item The key must be exchanged using a secure method (exchange them by \textit{hand}).
+    \item The key must be generated randomly and not used (otherwise a many-time pad attack is possible).
+  \end{itemize}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Many-time pad}
+\begin{frame}{Many-time pad \& XorTool}
 
-\end{frame}
+  Nice article: 
+  \textcolor{red}{\href{http://www.thecrowned.org/the-one-time-pad-and-the-many-time-pad-vulnerability}{the many time pad vulnerability}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{XorTool}
+  \smallskip
+  
+  \textcolor{red}{XorTool}: tool for statistical analysis of encrypted messages:
+
+  \centerline{\includegraphics[width=5.5cm]{img/xortool}}
+
+  \smallskip
+  Knowing the initial part, we can see words in the message:
+   
+  \centerline{\includegraphics[width=4cm]{img/xor1}}
+
+  Going by trial the final flag is reconstructed:
+    
+  \centerline{\includegraphics[width=4cm]{img/xor2}}
+
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Block vs Stream ciphers}
+
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+    Block ciphers
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    Stream ciphers
+  \end{column}
+  \end{columns}
 
 \end{frame}
 
@@ -56,23 +185,24 @@ How to handle messages of length not multiple of the block size?
 
 \smallskip
 
-Idea: append "some chars" to the message
+Idea: append "some chars" to the message (padding string)
 
 \bigskip
 
-\textbf{PKCS\#5}:
+\textcolor{red}{\textbf{PKCS\#5}}:
 
 \textit{The padding string PS shall consist of $8 - (||M|| \mod 8)$ octets all having value $8 - (||M|| \mod 8).$}
 
 \bigskip
 
-\textbf{PKCS\#7}:
+\textcolor{red}{\textbf{PKCS\#7}}:
 
 \textit{For such algorithms, the method shall be to pad the input at the trailing end with $k - (l \mod k)$ octets all having value $k - (l \mod k)$, where $l$ is the length of the input.}
 
 \bigskip
 
 Why $8 - (||M|| \mod 8)$ and not $(||M|| \mod 8)$?
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,15 +211,23 @@ Why $8 - (||M|| \mod 8)$ and not $(||M|| \mod 8)$?
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{ECB (Electronic Codebook)}
+\begin{frame}{ECB (Electronic Code Book)}
 
-\centering\includegraphics[width=9cm]{img/ECB.png}
+The message is divided into blocks, and each block is encrypted/decrypted separately:
 
 \medskip
 
-\centering
+\centerline{$C_i = f(M_i, Key)$}
 
-$C_i = f(M_i, Key)$
+\centerline{$M_i = f(C_i, Key)$}
+
+\medskip
+
+\centerline{\includegraphics[width=9cm]{img/ECB.png}}
+
+\medskip
+
+Problem: no diffusion, ECB encrypt same plaintext in same ciphertext
 
 \end{frame}
 
@@ -101,22 +239,19 @@ $C_i = f(M_i, Key)$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{CBC (Cipher Block Chaining)}
 
-\centering\includegraphics[width=9cm]{img/CBC.png}
+In CBC each block of plaintext is XORed with the previous ciphertext block before being encrypted. An initialization vector in needed for the first block.
+ 
+\medskip
+
+\centerline{\includegraphics[width=9cm]{img/CBC.png}}
 
 \medskip
 
-\centering
+$C_0 = IV$
 
-$C_i = f(M_i \oplus IV_{i}, Key)$
+$C_{i+1} = \mathcal{C}(M_i \oplus C_{i}, Key)$
 
-\medskip
-
-$IV_0 = $ given in input (randomly generated)
-
-\medskip
-
-$IV_{i+1} = C_i$
-
+$M_{i+1} = \mathcal{D}(C_{i+1}, Key) \oplus C_{i}$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,6 +260,8 @@ $IV_{i+1} = C_i$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}{Stream ciphers (Salsa \& Cha-Cha)}
+\begin{frame}{Stream cipher: LFSR}
 
-%\end{frame}
+  LFSR: \textcolor{red}{L}inear-\textcolor{red}{F}eedback \textcolor{red}{S}hift \textcolor{red}{R}egisters
+  
+\end{frame}
