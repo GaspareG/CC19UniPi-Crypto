@@ -43,8 +43,8 @@
   Shannon defines two key concepts:
   
   \begin{itemize}
-    \item \textcolor{red}{Confusion}: the key must be well distributed in the encrypted message (each bit of the cipher should depend on each bit of the key with probability 50\%).
-    \item \textcolor{red}{Diffusion}: the message must be well distributed in the encrypted message (each bit of the cipher should depend on each bit of the message with probability 50\%).
+    \item \textcolor{red}{Confusion}: the key must be well distributed in the encrypted message (each bit of the cipher should depend on each bit of the key with probability 50\%)
+    \item \textcolor{red}{Diffusion}: the message must be well distributed in the encrypted message (each bit of the cipher should depend on each bit of the message with probability 50\%)
   \end{itemize}
   
   \medskip
@@ -77,9 +77,9 @@
   
   \pause
 
-  Problem: the key $k$ could be \textcolor{red}{shorter} than the message $m$.
+  Problem: the key $k$ could be \textcolor{red}{shorter} than the message $m$
   
-  Solution: reuse the key as $k^{'} = k \cdot k \cdot \ldots \cdot k$ until $||k^{'}||$ $m$.
+  Solution: reuse the key as $k^{'} = k \cdot k \cdot \ldots \cdot k$ until $||k^{'}||$ $m$
 
   \medskip
   \pause
@@ -113,7 +113,7 @@
   
   \medskip
   
-  The probability that $M$ is a certain message $m$ knowing that the cipher $C$ is $c$ is equal to the probability that $M$ is a certain message not knowing the cipher (all messages are equiprobable, the encrypted message does not give us any information about the real message).
+  The probability that $M$ is a certain message $m$ knowing that the cipher $C$ is $c$ is equal to the probability that $M$ is a certain message not knowing the cipher (all messages are equiprobable, the encrypted message does not give us any information about the real message)
   
   \medskip
   
@@ -122,8 +122,8 @@
   Nice in theory, but:
   
   \begin{itemize}
-    \item The key must be exchanged using a secure method (exchange them by \textit{hand}).
-    \item The key must be generated randomly and not used (otherwise a many-time pad attack is possible).
+    \item The key must be exchanged using a secure method (exchange them by \textit{hand})
+    \item The key must be generated randomly and not used (otherwise a many-time pad attack is possible)
   \end{itemize}
 
 \end{frame}
@@ -184,7 +184,7 @@
     \end{itemize}
 
     Famous ciphers:         \\
-    \phantom{pad}ChaCha     \\
+    \phantom{pad}ChaCha20   \\
     \phantom{pad}Salsa20    \\
     \phantom{pad}LFSR-based
     
@@ -208,13 +208,13 @@ Idea: append "some chars" to the message (\textcolor{red}{padding string})
 
 \textcolor{red}{\textbf{PKCS\#5}}:
 
-\textit{The padding string PS shall consist of $8 - (||M|| \mod 8)$ octets all having value $8 - (||M|| \mod 8).$}
+\textit{The padding string PS shall consist of $8 - (||M|| \mod 8)$ octets all having value $8 - (||M|| \mod 8)$}
 
 \bigskip
 
 \textcolor{red}{\textbf{PKCS\#7}}:
 
-\textit{For such algorithms, the method shall be to pad the input at the trailing end with $k - (l \mod k)$ octets all having value $k - (l \mod k)$, where $l$ is the length of the input.}
+\textit{For such algorithms, the method shall be to pad the input at the trailing end with $k - (l \mod k)$ octets all having value $k - (l \mod k)$, where $l$ is the length of the input}
 
 \bigskip
 
@@ -322,12 +322,16 @@ Implements the confusion and diffusion principle by 16 rounds of the \textcolor{
 
   How to ciphers two or more blocks? Different modes, different features:
   
+  \smallskip
+  
   \begin{itemize}
-    \item \textcolor{red}{Parallel encryption}: encrypt different blocks at the same time (without race conditions)
-    \item \textcolor{red}{Parallel decryption}: decrypt different blocks at the same time (without race conditions)
+    \item \textcolor{red}{Parallel encryption}: encrypt different blocks at the same time
+    \item \textcolor{red}{Parallel decryption}: decrypt different blocks at the same time
     \item \textcolor{red}{Random read}: decrypt any single block without decrypting the previous ones
   \end{itemize}
 
+  \smallskip
+  
 \begin{table}[]
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -375,7 +379,9 @@ Problem: \textcolor{red}{no diffusion}, ECB encrypt same plaintext in same ciphe
 
   \medskip
   
-  Reverse: \texttt{XXXXXXXX} $\rightarrow$ \texttt{ae69a8467c46bd2f8d30db166ebfc135}
+  How to reverse: \texttt{ae69a8467c46bd2f8d30db166ebfc135} $\rightarrow$ \texttt{XXXXXXXX} ?  
+
+  \medskip
 
   Idea: \texttt{AAAAAAA\textcolor{red}{Y} AAAAAAA\textcolor{red}{X} XXXXXXXP}
   
@@ -388,7 +394,9 @@ Problem: \textcolor{red}{no diffusion}, ECB encrypt same plaintext in same ciphe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{CBC (Cipher Block Chaining)}
 
-In CBC each block of plaintext is XORed with the \textcolor{red}{previous ciphertext} block before being encrypted. An initialization vector in needed for the first block.
+In CBC mode each plaintext block is XORed with the \textcolor{red}{previous ciphertext} block before being encrypted \\
+
+An initialization vector in needed for the first block (usually random generated)
  
 \medskip
 
@@ -432,4 +440,8 @@ In CBC each block of plaintext is XORed with the \textcolor{red}{previous cipher
   \end{column}
   \end{columns}
 
+  \medskip
+  
+  Vulnerability: we can retrieve register and branches if we know a portion of the output stream (via the Berlekamp-Massey algorithm)
+  
 \end{frame}

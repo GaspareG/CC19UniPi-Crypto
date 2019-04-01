@@ -89,11 +89,92 @@ Cipher text: \textit{EJXCTEDECDAEWRIORFEONALEVSE}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Substituion cipher: XXX}
+\begin{frame}{Polialphabetic substituion cipher: Vigenère}
   
+The problem with monoalphabetic ciphers is that each character of the alphabet is replaced with always the same character in the ciphertext.
+
+\smallskip
+
+What can we do to solve this weakness? \textcolor{red}{Stack more ciphers}!
+
+The Vigenère cipher is basically a \textbf{sequence of Caesar ciphers with different shifts}.
+
+\smallskip
+
+  \begin{columns}
+  \begin{column}{0.4\textwidth}
+
+    \centerline{\includegraphics[width=4cm]{img/VigenereTable.png}}
+
+    This table is called \textcolor{red}{Vigenère table}.
+    
+    It contains all the Caesar ciphers. 
+
+  \end{column}
+  \begin{column}{0.6\textwidth}
+
+
+    Encryption is performed character-by-character by accessing the cell of the table within the row corresponding to the current key letter and column to the plaintext letter.
+
+    Decryption works in the same way of the encryption but we use a transposed Vigenère table.
+
+    This simple technique earned the name of \textcolor{red}{the indecipherable cipher}, and resisted attacks for over 3 centuries (1553-1863)!
+
+  \end{column}
+  \end{columns}
+
+
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Transposition cipher: XXX}
+\begin{frame}{Vigenère cipher: an example}
+  
+  We want to encrypt the message \texttt{THIS IS AN EXAMPLE} with the key \texttt{SECRET}
+
+  \medskip
+  
+  First of all, we repeat the key until it has the same length of the plaintext: \\
+
+  \medskip
+  
+  $m =$ \texttt{THISISANEXAMPLE}\\
+  $k =$ \texttt{SECRETSECRETSEC}\\
+
+  \medskip
+  
+  In our example, the first letter of the plaintext is $T$ and the first of the key is $S$, so we access the row $S$ and column $T$, which yields $L$. 
+  
+  And so on until the end of the message:\\
+
+  \medskip
+  
+  $c =$ \texttt{LLKJMLSRGOEFHPG}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Transposition cipher: an example}
+
+The plaintext is written in a rectangular grid and then the columns are reshuffled, the encryption key is the \textcolor{red}{column permutation}
+
+\medskip
+
+$m =$ \texttt{THIS IS AN EXAMPLE}\\
+$k =$ \texttt{\{4, 2, 1, 3\}}
+
+\medskip
+
+\centerline{\texttt{T H I S  \phantom{-------------------->} S H T I}}
+\centerline{\texttt{I S A N  \phantom{---}Reorder columns\phantom{---} N S I A}}
+\centerline{\texttt{E X A M  \phantom{---}-------------->\phantom{---} M X E A}}
+\centerline{\texttt{P L E =  \phantom{-------------------->} = L P E}}
+
+\medskip
+
+$c =$ \texttt{SHTINSIAMXEA=LPE}
+
+\medskip
+
+To recover the original message, just write the ciphertext in a grid again and apply the inverse permutation of columns
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
