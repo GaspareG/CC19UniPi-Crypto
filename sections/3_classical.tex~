@@ -9,11 +9,11 @@
 
 \smallskip
 
-Encrypt: \textcolor{red}{right shift} each letter of 3 positions
+Encrypt: right shift each letter of 3 positions
 
 \smallskip
 
-Decrypt: \textcolor{red}{left shift} each letter of 3 positions
+Decrypt: left shift each letter of 3 positions
 
 \medskip
 
@@ -25,7 +25,7 @@ General cipher: shift letter of $K$ positions
 
 \smallskip
 
-Attack: \textcolor{red}{bruteforce} all the possible $K$ (only $25$ values...)
+Attack: bruteforce all the possible $K$ (only $26$...)
 
 \end{frame}
 
@@ -46,7 +46,7 @@ ROT47: Caesar cipher with $K = 47$ on printable ASCII chars (33 - 126).
 
 \medskip
 
-Why $K = 13$ (or $K = 47$)? Because \textcolor{red}{Encrypt = Decrypt}
+Why $K = 13$ (or $K = 47$)? Because Encrypt = Decrypt
 
 \end{frame}
 
@@ -55,25 +55,21 @@ Why $K = 13$ (or $K = 47$)? Because \textcolor{red}{Encrypt = Decrypt}
 
 \textbf{Substitution ciphers}
 
-\phantom{pad}- Monoalphabetic ciphers: \textcolor{red}{$C_{new} = P[C_{old}]$} (Where $P$ is a dictionary permutation)
+\textcolor{red}{Monoalphabetic} ciphers: $C_{new} = P[C_{old}]$ (Where $P$ is a dictionary permutation)
 
 \smallskip
 
-\phantom{pad}(ROT-K is a monoalphabetic cipher with $P$ is a cyclic rotation)
+(ROT-K is a monoalphabetic cipher where $P$ is a cyclic rotation of the alphabet)
 
 \smallskip
 
-\phantom{pad}- Polialphabetic ciphers: \textcolor{red}{multiple substitution} alphabets 
-
-\phantom{pad}(more than one dictionary permutation)
+\textcolor{red}{Polialphabetic} ciphers: multiple substitution alphabets (more than one dictionary permutation)
 
 \smallskip
 
 \textbf{Transposition ciphers}
 
-\phantom{pad}Encryption systems where the \textcolor{red}{positions} held by units of plaintext 
-
-\phantom{pad}(characters or groups of characters) \textcolor{red}{are shifted} according to a regular system.
+Encryption systems where the positions held by units of plaintext (characters or groups of characters) are shifted according to a regular system.
 
 \smallskip
 
@@ -109,13 +105,13 @@ Cipher text: \textit{EJXCTEDECDAEWRIORFEONALEVSE}
 
 \medskip
 
-\textcolor{red}{Almost} all possible classic ciphers (old and new), encoder/decoder, ...
+Almost all possible classic ciphers (old and new), encoder/decoder, ...
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Cryptanalysis}
 
-Often the vulnerability is not in the algorithm but in \textcolor{red}{its application}...
+Often the vulnerability is not in the algorithm but in its application...
 
 \begin{itemize}
   \item Bad use of the key (too short, reused, bad generated, ...)
@@ -125,7 +121,7 @@ Often the vulnerability is not in the algorithm but in \textcolor{red}{its appli
 
 \medskip
 
-In particular we talk about \textcolor{red}{statistical cryptanalysis} when we force the cipher not from algorithmic point of view but from statistical one
+In particular we talk about statistical cryptanalysis when we force the cipher not from algorithmic point of view but from statistical one
 
 \medskip
 

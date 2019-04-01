@@ -5,7 +5,7 @@
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{subfig}
-\usepackage{listings}
+\usepackage{verbatim}
 \title{Cryptography}
 \author{Gaspare Ferraro}
 \subtitle{A (nearly) complete overview}

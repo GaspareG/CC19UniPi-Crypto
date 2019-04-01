@@ -31,7 +31,7 @@ Cryptography (from greek: kryptos "hidden, secret" and graphein, "to write")
 
 \medskip
 
-\textit{The science of \textcolor{red}{secure communication}}
+\textit{The science of secure communication}
 
 \end{frame}
 
@@ -52,7 +52,7 @@ Cryptography (from greek: kryptos "hidden, secret" and graphein, "to write")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Cryptography today}
   \center {
-    The needs, as well as the \textcolor{red}{available resources}, have evolved
+    The needs, as well as the resources available, have evolved
     
     and today we can divide cryptography into:
 

@@ -30,19 +30,19 @@ The set of all the possible (meaningful) messages is called \textcolor{red}{dict
 
   \smallskip
 
-  char encoded in \textcolor{red}{7 bits} + 1 bit for check (parity bit).
+  char encoded in 7 bit + 1 bit for check (parity bit).
 
   \smallskip
 
   \centering\includegraphics[width=6cm]{img/ascii.png}
 
-  $0, \ldots, 31$ + $127$ $\rightarrow$ \textcolor{red}{non-printable} chars (null, new line, tab, others)
+  $0, \ldots, 31$ + $127$ $\rightarrow$ non-printable chars (null, new line, tab, others)
   
-  $32, \ldots, 126$ $\rightarrow$ \textcolor{red}{printable} chars (letters, digits, punctuation, others)
+  $32, \ldots, 126$ $\rightarrow$ printable chars (letters, digits, punctuation, others)
   
   \medskip
   
-  \textcolor{red}{Extended} ASCII $\rightarrow$ char encoded in 8 bits (add 128 printable chars to standard ASCII)
+  Extended ASCII $\rightarrow$ char encoded in 8 bit (add 128 printable chars to standard ASCII)
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,7 +50,7 @@ The set of all the possible (meaningful) messages is called \textcolor{red}{dict
 
 \centering
 
-Obviously 128 (or 256) characters are \textcolor{red}{not enough}!\\
+Obviously 128 (or 256) characters are not enough!\\
 (Chinese, cyrillic, greek alphabets, emojis...)
 
 \medskip
@@ -63,7 +63,7 @@ Different standards: UTF-8, UTF-16, UTF-32 and others
 
 \medskip
 
-Currently assigned "only" \textcolor{red}{137993} characters
+Currently assigned "only" 137993 characters
 
 \end{frame}
 
@@ -72,11 +72,11 @@ Currently assigned "only" \textcolor{red}{137993} characters
 
 \centering
 
-(\textcolor{red}{Audio}) character encoding scheme used in (telegraph) telecommunication.
+(Audio) character encoding scheme used in (telegraph) telecommunication.
 
 \smallskip
 
-Each character is encoded using a combination of \textcolor{red}{short}/\textcolor{red}{long signal}.
+Each character is encoded using a combination of short and long signal.
 
 \medskip
 
@@ -89,11 +89,11 @@ Each character is encoded using a combination of \textcolor{red}{short}/\textcol
 
 \centering
 
-(\textcolor{red}{Tactile}) character encoding scheme used for visually impaired people.
+(Tactile) character encoding scheme used for visually impaired people.
 
 \smallskip
 
-Each characted is encoded using a $2 \times 3$ rectangle with "\textcolor{red}{raised dots}".
+Each characted is encoded using a $2 \times 3$ rectangle with "raised dots".
 
 \medskip
 
@@ -106,9 +106,9 @@ Each characted is encoded using a $2 \times 3$ rectangle with "\textcolor{red}{r
 
   \centering
 
-  Group message in blocks of \textcolor{red}{$6$} bits.
+  Group message in blocks of $6$ bits.
 
-  Advantage: encode all the ASCII chars in \textcolor{red}{printable characters}
+  Advantage: encode all the ASCII chars in printable chars
   
   \smallskip
   

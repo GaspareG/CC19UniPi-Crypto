@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Symmetric-key cryptography}
 
-  Symmetric ciphers are those where messages are encrypted and decrypted using the same key, which must be known only and exclusively to the two parties
+  Symmetric ciphers are those where messages are encrypted and decrypted using the \textcolor{red}{same key}, which must be known only and exclusively to the two parts
   
   \medskip
 
@@ -19,7 +19,7 @@
   
   \phantom{padding}$\mathcal{D}(\mathcal{C}(m, k), k) = m$ 
   
-  \phantom{padding}The original message is not altered during the communication
+  \phantom{padding}The original message is \textcolor{red}{not altered} during the communication
   
   \medskip
   
@@ -56,7 +56,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{XOR cipher}
 
-  Consider the XOR (exclusive or) operation $\oplus$, the following properties are valid:
+  Consider the \textcolor{red}{XOR} (exclusive or) operation $\oplus$, the following properties are valid:
   
   \begin{itemize}
     \item $0 \oplus 0 = 1 \oplus 1 = 0$ 
@@ -77,7 +77,7 @@
   
   \pause
 
-  Problem: the key $k$ could be shorter than the message $m$.
+  Problem: the key $k$ could be \textcolor{red}{shorter} than the message $m$.
   
   Solution: reuse the key as $k^{'} = k \cdot k \cdot \ldots \cdot k$ until $||k^{'}||$ $m$.
 
@@ -97,7 +97,7 @@
 
   \pause
 
-  The problem with the XOR cipher is that encrypting repeatedly reusing the same key can leak \textcolor{red}{statistical} informations of the original message  
+  The problem with the XOR cipher is that encrypting repeatedly reusing the same key can leak \textcolor{red}{statistical informations} of the original message  
   
   \medskip
   
@@ -109,7 +109,7 @@
   
   \medskip
   
-  $P(M = m | C = c) = P(M = m)$
+  \phantom{pad}$P(M = m | C = c) = P(M = m)$
   
   \medskip
   
@@ -132,7 +132,7 @@
 \begin{frame}{Many-time pad \& XorTool}
 
   Nice article: 
-  \textcolor{red}{\href{http://www.thecrowned.org/the-one-time-pad-and-the-many-time-pad-vulnerability}{the many time pad vulnerability}}
+  \textcolor{red}{\href{http://www.thecrowned.org/the-one-time-pad-and-the-many-time-pad-vulnerability}{thecrowned.org/the-one-time-pad-and-the-many-time-pad-vulnerability}}
 
   \smallskip
   
@@ -157,22 +157,39 @@
 
   \begin{columns}
   \begin{column}{0.5\textwidth}
-    Block ciphers
+    \textcolor{red}{Block ciphers}
+    
+    \begin{itemize}
+      \item Works with fixed-length groups of bits (called blocks)
+      \item More memory/time requirements
+      \item High diffusion and confusion
+      \item Error propagation
+      \item Need to handle messages length (padding)
+    \end{itemize}
+
+    Famous ciphers:       \\
+    \phantom{pad}DES      \\
+    \phantom{pad}AES      \\
+    \phantom{pad}BlowFish
   \end{column}
   \begin{column}{0.5\textwidth}
-    Stream ciphers
+    \textcolor{red}{Stream ciphers}
+    
+    \begin{itemize}
+      \item Works by encrypt digits one at the time
+      \item Faster encryption/decryption
+      \item Low diffusion
+      \item Low propagation error
+      \item Need a key stream (usually a shift register)
+    \end{itemize}
+
+    Famous ciphers:         \\
+    \phantom{pad}ChaCha     \\
+    \phantom{pad}Salsa20    \\
+    \phantom{pad}LFSR-based
+    
   \end{column}
   \end{columns}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{DES}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{AES}
 
 \end{frame}
 
@@ -185,7 +202,7 @@ How to handle messages of length not multiple of the block size?
 
 \smallskip
 
-Idea: append "some chars" to the message (padding string)
+Idea: append "some chars" to the message (\textcolor{red}{padding string})
 
 \bigskip
 
@@ -206,14 +223,130 @@ Why $8 - (||M|| \mod 8)$ and not $(||M|| \mod 8)$?
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{DES}
+
+\textcolor{red}{D}ata \textcolor{red}{E}ncryption \textcolor{red}{S}tandard
+
+Developed in 1975 by Feistel, encrypt blocks of 64 bits with a 56 bits key
+
+Implements the confusion and diffusion principle by 16 rounds of the \textcolor{red}{Feistel function}
+
+\medskip
+
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+  
+    \centerline{\includegraphics[width=5cm]{img/DES.png}}
+
+  \end{column}
+  \begin{column}{0.5\textwidth}
+  
+  The Feistel function consists in 4 stages:
+  
+  \begin{itemize}
+    \item 1. \textcolor{red}{Expand} the half block from 32 to 48 bits (E-Box)
+    \item 2. \textcolor{red}{Mix} result and subkey using a XOR operation
+    \item 3. \textcolor{red}{Substitution} of the 6-bits input with a 4-bits output according to a lookup table (S-Box)
+    \item 4. \textcolor{red}{Permutation} of the result (P-Box)
+  \end{itemize}
+    
+  \end{column}
+  \end{columns}
+
+  \medskip
+
+  Problem: DES vulnerable to a bruteforce attack (only 56 bits for the key...)
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{AES}
+
+\small
+
+  \textcolor{red}{A}dvanced \textcolor{red}{E}ncryption \textcolor{red}{S}tandard
+
+  \medskip
+
+  AES replace DES starting from 2001 and is currently the standard in secure communications (TLS1.3 support only AES and ChaCha20)
+
+  \medskip
+  
+  Based on a \textcolor{red}{substitution–permutation network} (equivalent of the Feistel network)
+
+  \medskip
+  
+  \begin{columns}
+  \begin{column}{0.25\textwidth}
+    \includegraphics[width=3.5cm]{img/AES-1.png}
+  \end{column}
+  \begin{column}{0.25\textwidth}  
+    Step 1: \\
+    
+    Each byte is replaced with another according to a lookup table (S-Box)
+  \end{column}
+  \begin{column}{0.25\textwidth}
+    \includegraphics[width=3.5cm]{img/AES-2.png}
+  \end{column}
+  \begin{column}{0.25\textwidth}
+    Step 2:\\
+    
+    Transposition of each rows by 0, 1, 2 or 3 positions
+  \end{column}
+  \end{columns}
+
+  
+  \begin{columns}
+  \begin{column}{0.25\textwidth}
+    \includegraphics[width=3.5cm]{img/AES-3.png}
+  \end{column}
+  \begin{column}{0.25\textwidth}
+    Step 3: \\
+    
+    Linear mixing operation where each column is mapped into a new one
+  \end{column}
+  \begin{column}{0.25\textwidth}
+    \includegraphics[width=3.5cm]{img/AES-4.png}
+  \end{column}
+  \begin{column}{0.25\textwidth}
+    Step 4: \\
+    
+    Each byte is XORed with the corresponding value of the subkey
+  \end{column}
+  \end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Block cipher mode of operation}
+
+  How to ciphers two or more blocks? Different modes, different features:
+  
+  \begin{itemize}
+    \item \textcolor{red}{Parallel encryption}: encrypt different blocks at the same time (without race conditions)
+    \item \textcolor{red}{Parallel decryption}: decrypt different blocks at the same time (without race conditions)
+    \item \textcolor{red}{Random read}: decrypt any single block without decrypting the previous ones
+  \end{itemize}
+
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|}
+\hline
+Mode                        & \begin{tabular}[c]{@{}l@{}}Parallel \\ encryption\end{tabular} & \begin{tabular}[c]{@{}l@{}}Paralllel \\ decryption\end{tabular} & \begin{tabular}[c]{@{}l@{}}Random\\ read\end{tabular} \\ \hline
+\textcolor{red}{Electronic Code Book (ECB)}   & Yes                                                            & Yes                                                             & Yes                                                   \\ \hline
+\textcolor{red}{Cipher Block Chaining (CBC)} & No                                                             & Yes                                                             & Yes                                                   \\ \hline
+Propagating CBC (PCBC)      & No                                                             & No                                                              & No                                                    \\ \hline
+Cipher Feedback (CFB)       & No                                                             & Yes                                                             & Yes                                                   \\ \hline
+Output Feedback (OFB)       & No                                                             & No                                                              & No                                                    \\ \hline
+Counter (CTR)               & Yes                                                            & Yes                                                             & Yes                                                   \\ \hline
+\end{tabular}
+\end{table}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{ECB (Electronic Code Book)}
 
-The message is divided into blocks, and each block is encrypted/decrypted separately:
+The message is divided into blocks, and each block is encrypted/decrypted \textcolor{red}{separately}:
 
 \medskip
 
@@ -227,19 +360,22 @@ The message is divided into blocks, and each block is encrypted/decrypted separa
 
 \medskip
 
-Problem: no diffusion, ECB encrypt same plaintext in same ciphertext
+Problem: \textcolor{red}{no diffusion}, ECB encrypt same plaintext in same ciphertext
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{How to break ECB (padding-oracle attack)}
 
+  \centerline{\includegraphics[width=9cm]{img/tux.jpg}}
+
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{CBC (Cipher Block Chaining)}
 
-In CBC each block of plaintext is XORed with the previous ciphertext block before being encrypted. An initialization vector in needed for the first block.
+In CBC each block of plaintext is XORed with the \textcolor{red}{previous ciphertext} block before being encrypted. An initialization vector in needed for the first block.
  
 \medskip
 
@@ -247,21 +383,40 @@ In CBC each block of plaintext is XORed with the previous ciphertext block befor
 
 \medskip
 
-$C_0 = IV$
+\phantom{pad}$C_0 = IV$
 
-$C_{i+1} = \mathcal{C}(M_i \oplus C_{i}, Key)$
+\phantom{pad}$C_{i+1} = \mathcal{C}(M_i \oplus C_{i}, Key)$
 
-$M_{i+1} = \mathcal{D}(C_{i+1}, Key) \oplus C_{i}$
+\phantom{pad}$M_{i+1} = \mathcal{D}(C_{i+1}, Key) \oplus C_{i}$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{How to break CBC (bit-flipping attack)}
+%\begin{frame}{How to break CBC (bit-flipping attack)}
 
-\end{frame}
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Stream cipher: LFSR}
 
-  LFSR: \textcolor{red}{L}inear-\textcolor{red}{F}eedback \textcolor{red}{S}hift \textcolor{red}{R}egisters
+  \textcolor{red}{L}inear-\textcolor{red}{F}eedback \textcolor{red}{S}hift \textcolor{red}{R}egisters
   
+  \medskip
+
+  Shift register whose input bit is a linear function of its previous state
+   
+  \medskip
+  
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+    \centerline{\includegraphics[width=6cm]{img/LFSR-code.png}}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \centerline{\includegraphics[width=6cm]{img/lfsr.png}}
+
+    \medskip
+
+    \centerline{\includegraphics[width=6cm]{img/LFSR-gen.png}}
+  \end{column}
+  \end{columns}
+
 \end{frame}
