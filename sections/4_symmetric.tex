@@ -367,9 +367,22 @@ Problem: \textcolor{red}{no diffusion}, ECB encrypt same plaintext in same ciphe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{How to break ECB (padding-oracle attack)}
 
+  Problem: no diffusion, ECB encrypt \textcolor{red}{same plaintext} in \textcolor{red}{same ciphertext}
+  
+  \medskip
+  
   \centerline{\includegraphics[width=9cm]{img/tux.jpg}}
 
+  \medskip
+  
+  Reverse: \texttt{XXXXXXXX} $\rightarrow$ \texttt{ae69a8467c46bd2f8d30db166ebfc135}
 
+  Idea: \texttt{AAAAAAA\textcolor{red}{Y} AAAAAAA\textcolor{red}{X} XXXXXXXP}
+  
+  \medskip
+  
+  To find X try all the possible value of Y until first and second ciphertexts are the same
+  
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
