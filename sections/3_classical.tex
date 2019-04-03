@@ -55,7 +55,7 @@ Why $K = 13$ (or $K = 47$)? Because \textcolor{red}{Encrypt = Decrypt}
 
 \textbf{Substitution ciphers}
 
-\phantom{pad}- Monoalphabetic ciphers: \textcolor{red}{$C_{new} = P[C_{old}]$} (Where $P$ is a dictionary permutation)
+\phantom{pad}- Monoalphabetic ciphers: \textcolor{red}{$C_{new} = P[C_{old}]$} (Where $P$ is an alphabet permutation)
 
 \smallskip
 
@@ -137,8 +137,8 @@ The Vigenère cipher is basically a \textbf{sequence of Caesar ciphers with diff
 
   \medskip
   
-  $m =$ \texttt{THISISANEXAMPLE}\\
-  $k =$ \texttt{SECRETSECRETSEC}\\
+  \phantom{pad}$m =$ \texttt{THISISANEXAMPLE}\\
+  \phantom{pad}$k =$ \texttt{SECRETSECRETSEC}\\
 
   \medskip
   
@@ -148,9 +148,19 @@ The Vigenère cipher is basically a \textbf{sequence of Caesar ciphers with diff
 
   \medskip
   
-  $c =$ \texttt{LLKJMLSRGOEFHPG}
+  \phantom{pad}$c =$ \texttt{LLKJMLSRGOEFHPG}
 
+  \medskip
+
+  Exercise: 
+  
+  \phantom{pad}$c =$ \texttt{UEGJEKTYVDSKWJWE}\\
+  \phantom{pad}$k =$ \texttt{SECRET}\\
+  \phantom{pad}$m =$ \textcolor{red}{???}
+  
 \end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Transposition cipher: an example}
 
@@ -158,8 +168,8 @@ The plaintext is written in a rectangular grid and then the columns are reshuffl
 
 \medskip
 
-$m =$ \texttt{THIS IS AN EXAMPLE}\\
-$k =$ \texttt{\{4, 2, 1, 3\}}
+\phantom{pad}$m =$ \texttt{THIS IS AN EXAMPLE}\\
+\phantom{pad}$k =$ \texttt{\{4, 2, 1, 3\}}
 
 \medskip
 
@@ -170,12 +180,19 @@ $k =$ \texttt{\{4, 2, 1, 3\}}
 
 \medskip
 
-$c =$ \texttt{SHTINSIAMXEA=LPE}
+\phantom{pad}$c =$ \texttt{SHTINSIAMXEA=LPE}
 
 \medskip
 
 To recover the original message, just write the ciphertext in a grid again and apply the inverse permutation of columns
 
+\medskip
+
+Exercise:
+
+  \phantom{pad}$c =$ \texttt{AGLF3RP\{T3UM5\_1\_D\}4B}\\
+  \phantom{pad}$m =$ \textcolor{red}{???}
+  
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{dcode.fr}

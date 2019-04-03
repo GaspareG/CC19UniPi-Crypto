@@ -67,11 +67,11 @@
   \medskip
   \pause
   
-  We define the XOR cipher as:
+  We define the XOR cipher as:\\
     
-  $\mathcal{C}(m, k) = m \oplus k$ \phantom{padding} ($m[i] \oplus k[i]$, $0 \leq i < ||m||$)
+  \phantom{pad}$\mathcal{C}(m, k) = m \oplus k$ \phantom{padding} ($m[i] \oplus k[i]$, $0 \leq i < ||m||$)\\
   
-  $\mathcal{D}(c, k) = c \oplus k$ \phantom{padding} ($c[i] \oplus k[i]$, $0 \leq i < ||c||$)
+  \phantom{pad}$\mathcal{D}(c, k) = c \oplus k$ \phantom{paddingg} ($c[i] \oplus k[i]$, $0 \leq i < ||c||$)
 
   \medskip
   
@@ -79,16 +79,16 @@
 
   Problem: the key $k$ could be \textcolor{red}{shorter} than the message $m$
   
-  Solution: reuse the key as $k^{'} = k \cdot k \cdot \ldots \cdot k$ until $||k^{'}||$ $m$
+  Solution: reuse the key as $k^{'} = k \cdot k \cdot \ldots \cdot k$ until $||k^{'}|| \geq m$
 
   \medskip
   \pause
   
   Example:
   
-  \texttt{m = 01100011 01101001 01100001 01101111} (ciao in ASCII).\\
-  \texttt{k = 01111000 01111000 01111000 01111000} (x in ascii 4 times)\\
-  \texttt{c = 00011011 00010001 00011001 00010111} (non printable, \texttt{GxEZFw==} in b64)
+  \phantom{pad}\texttt{m = 01100011 01101001 01100001 01101111} (ciao in ASCII).\\
+  \phantom{pad}\texttt{k = 01111000 01111000 01111000 01111000} (x in ascii 4 times)\\
+  \phantom{pad}\texttt{c = 00011011 00010001 00011001 00010111} (non printable, \texttt{GxEZFw==} in b64)
   
 \end{frame}
 
@@ -123,7 +123,7 @@
   
   \begin{itemize}
     \item The key must be exchanged using a secure method (exchange them by \textit{hand})
-    \item The key must be generated randomly and not used (otherwise a many-time pad attack is possible)
+    \item The key must be generated randomly and not reused (otherwise a many-time pad attack is possible)
   \end{itemize}
 
 \end{frame}
@@ -255,7 +255,7 @@ Implements the confusion and diffusion principle by 16 rounds of the \textcolor{
 
   \medskip
 
-  Problem: DES vulnerable to a bruteforce attack (only 56 bits for the key...)
+  Problem: DES is vulnerable to a (\textit{smart}) bruteforce attack (only 56 bits for the key...)
   
 \end{frame}
 
@@ -272,7 +272,7 @@ Implements the confusion and diffusion principle by 16 rounds of the \textcolor{
 
   \medskip
   
-  Based on a \textcolor{red}{substitution–permutation network} (equivalent of the Feistel network)
+  Based on a \textcolor{red}{substitution–permutation network} (the Feistel network equivalent of DES)
 
   \medskip
   
@@ -369,7 +369,7 @@ Problem: \textcolor{red}{no diffusion}, ECB encrypt same plaintext in same ciphe
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{How to break ECB (padding-oracle attack)}
+\begin{frame}{How to break ECB (Chosen-prefix attack)}
 
   Problem: no diffusion, ECB encrypt \textcolor{red}{same plaintext} in \textcolor{red}{same ciphertext}
   
@@ -383,11 +383,19 @@ Problem: \textcolor{red}{no diffusion}, ECB encrypt same plaintext in same ciphe
 
   \medskip
 
-  Idea: \texttt{AAAAAAA\textcolor{red}{Y} AAAAAAA\textcolor{red}{X} XXXXXXXP}
+  \phantom{pad}Idea: \texttt{AAAAAAA\textcolor{red}{Y} AAAAAAA\textcolor{red}{X} XXXXXXXP} $\rightarrow$ $c_0$ $c_1$ $c_2$
   
   \medskip
   
-  To find X try all the possible value of Y until first and second ciphertexts are the same
+  To find X try all the possible value of Y until $c_0 = c_1$
+
+  \medskip
+
+  \phantom{pad}Idea$^2$: \texttt{AAAAAAX\textcolor{red}{Y} AAAAAAX\textcolor{red}{X} XXXXXXPP} $\rightarrow$ $c_0$ $c_1$ $c_2$
+    
+  \medskip
+  
+  To find X try all the possible value of Y until $c_0 = c_1$
   
 \end{frame}
 
@@ -396,7 +404,7 @@ Problem: \textcolor{red}{no diffusion}, ECB encrypt same plaintext in same ciphe
 
 In CBC mode each plaintext block is XORed with the \textcolor{red}{previous ciphertext} block before being encrypted \\
 
-An initialization vector in needed for the first block (usually random generated)
+An initialization vector IV is needed for the first block (usually random generated)
  
 \medskip
 
@@ -442,6 +450,6 @@ An initialization vector in needed for the first block (usually random generated
 
   \medskip
   
-  Vulnerability: we can retrieve register and branches if we know a portion of the output stream (via the Berlekamp-Massey algorithm)
+  Vulnerability: we can retrieve register and branches if we know a portion of the key stream (via the Berlekamp-Massey algorithm)
   
 \end{frame}
