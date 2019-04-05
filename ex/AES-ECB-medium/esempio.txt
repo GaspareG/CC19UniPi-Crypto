@@ -1,0 +1,27 @@
+123456789012345 123456789012345 123456789012345 123456789012345
+flag{.........}
+XXXXXXXXXXXXXXa XXXXXXXXXXXXXXf lag{.........}P
+XXXXXXXXXXXXXXb XXXXXXXXXXXXXXf lag{.........}P
+XXXXXXXXXXXXXXc XXXXXXXXXXXXXXf lag{.........}P
+XXXXXXXXXXXXXXd XXXXXXXXXXXXXXf lag{.........}P
+XXXXXXXXXXXXXXe XXXXXXXXXXXXXXf lag{.........}P
+ 
+XXXXXXXXXXXXXfa XXXXXXXXXXXXXfl ag{.........}PP
+XXXXXXXXXXXXXfb XXXXXXXXXXXXXfl ag{.........}PP
+XXXXXXXXXXXXXfc XXXXXXXXXXXXXfl ag{.........}PP
+XXXXXXXXXXXXXfd XXXXXXXXXXXXXfl ag{.........}PP
+...
+XXXXXXXXXXXXXfl XXXXXXXXXXXXXfl ag{.........}PP
+
+XXXXXXXXXflag{Y XXXXXXXXXflag{. ........}PP
+
+flag{XXXXXXXXX} flag{XXXXXXXXX}
+
+flag = "flag{..."
+assert len(flag) == i
+
+for i in range(16):
+  blocchi = f("X"*(len(flag)-1) + c + "X"*(len(flag)-1) + flag_vera)
+  if blocchi[0] == blocchi[1]  
+    flag = flag+i
+    break
